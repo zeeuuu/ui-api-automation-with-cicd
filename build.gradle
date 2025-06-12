@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.2'
+
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.22.2'
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '7.22.2'
+
+    implementation group: 'net.java.dev.jna', name: 'jna', version: '5.17.0'
+    implementation group: 'org.json', name: 'json', version: '20250517'
+    implementation group: 'io.rest-assured', name: 'json-path', version: '5.5.5'
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '5.5.5'
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.5.5'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.2'
+
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.33.0'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '6.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.register('apiTest', Test) {
+    useJUnitPlatform()
+    systemProperty 'cucumber.filter.tags', '@api'
+    description = 'Run only Cucumber tests with tag @api'
+    group = 'verification'
+}
+
+tasks.register('webTest', Test) {
+    useJUnitPlatform()
+    systemProperty 'cucumber.filter.tags', '@web'
+    description = 'Run only Cucumber tests with tag @web'
+    group = 'verification'
+}

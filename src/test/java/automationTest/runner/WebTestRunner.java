@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {
                 "pretty",
-                "summary",
                 "html:reports/webTest-report.html",
                 "json:reports/webTest-report.json"
         },

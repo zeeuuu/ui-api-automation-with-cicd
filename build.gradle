@@ -45,3 +45,5 @@ tasks.register('webTest', Test) {
     description = 'Run only Cucumber tests with tag @web'
     group = 'verification'
 }
+
+check.dependsOn apiTest, webTest

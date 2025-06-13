@@ -33,17 +33,17 @@ test {
 }
 
 tasks.register('apiTest', Test) {
-    useJUnitPlatform()
+    useJUnit()
+    include '**/ApiTestRunner.class'
     systemProperty 'cucumber.filter.tags', '@api'
     description = 'Run only Cucumber tests with tag @api'
     group = 'verification'
 }
 
 tasks.register('webTest', Test) {
-    useJUnitPlatform()
+    useJUnit()
+    include '**/WebTestRunner.class'
     systemProperty 'cucumber.filter.tags', '@web'
     description = 'Run only Cucumber tests with tag @web'
     group = 'verification'
 }
-
-check.dependsOn apiTest, webTest

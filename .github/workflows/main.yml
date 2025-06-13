@@ -47,7 +47,7 @@ jobs:
         if: always()
         with:
           name: api test reports
-          path: build/reports/tests/apiTest
+          path: reports/apiTest-report.html
 
       - name: Archive Web Test Results
         uses: actions/upload-artifact@4.3.0

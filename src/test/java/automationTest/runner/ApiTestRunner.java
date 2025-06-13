@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {
                 "pretty",
-                "html:build/reports/tests/apiTest/apiTest-report.html",
-                "json:build/reports/tests/apiTest/apiTest-report.json"
+                "html:reports/apiTest-report.html",
+                "json:reports/apiTest-report.json"
         },
         glue = {"automationTest.api.apiStepDef"},
         features = "src/test/resources/features/api",

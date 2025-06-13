@@ -14,12 +14,14 @@ public class Utility {
 
     public static void startDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
+
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver(options);
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
@@ -31,15 +33,23 @@ public class Utility {
     }
 
     public static String generateUsername() {
-        String[] prefixes = {"zee", "guest", "xolo"};
+        String[] prefixes = {"zee", "guest", "xolo", "kai", "special"};
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
         Random random = new Random();
-        String username = prefixes[random.nextInt(prefixes.length)] + random.nextInt(10000);
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 4; i++) {
+            sb.append(alphabet.charAt(random.nextInt(alphabet.length())));
+        }
+
+        String username = prefixes[random.nextInt(prefixes.length)] + sb.toString() + random.nextInt(10000);
         return username;
     }
 
     public static String generateRandomEmail() {
-        int randomNumber = new Random().nextInt(10000);
-        return "xolo"+randomNumber+"@dummyapy.com";
+        String name = generateUsername();
+        return name +"@dummyapy.com";
     }
 
     public static File getJSONSchemaFile(String JSONFile) {
